@@ -2,6 +2,7 @@ from Menu import *
 from Menu_end import menu_end
 from Obra import Obra
 from input import *
+
 from random import randint
 
 def ler_obras():
@@ -37,26 +38,6 @@ def obra_file_escrever(_obra_nova: Obra):
 
     return True
         
-def input_obra():
-    # autor = tratar_input_base('Autor:')
-    # nome = tratar_input_base('Nome:')
-    # material = tratar_input_base('Material:')
-    # superficie = tratar_input_base('Superficie:')
-    # largura = tratar_input_int('Largura')
-    # comprimento = tratar_input_int('Comprimento')
-    # preco = tratar_input_int('Preco')
-
-    return Obra(
-        -1,
-        get_input('Autor:', tratar_input_base),
-        get_input('Nome:', tratar_input_base),
-        get_input('Material:', tratar_input_base),
-        get_input('Superficie:', tratar_input_base),
-        get_input('Largura:', tratar_input_int, validate_input_dimensao),
-        get_input('Comprimento:', tratar_input_int, validate_input_dimensao),
-        get_input('Preco:', tratar_input_int)
-    )
-
 def adicionar():
     print('adicionar')
     data = ler_obras()

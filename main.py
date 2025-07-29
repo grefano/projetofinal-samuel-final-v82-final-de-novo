@@ -1,5 +1,5 @@
 """
-json, X tratar input,  qr code
+X json, X tratar input,  qr code
 
 menu que permite voltar etapas em uma opção
 
