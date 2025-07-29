@@ -1,5 +1,7 @@
 from input import *
 import os
+import json
+
 class Menu():
     def __init__(self, _title: str | None, _handle_end):
         self.title = _title
@@ -17,21 +19,13 @@ class Menu():
         for o in range(len(self.titles)):
             print(f'   {str(o)} - {self.titles[o]}')
 
-    def get_selection(self, _prompt: str):
-        valido = False
-        while True:
-            sel = tratar_input_int( input(_prompt) )
-            valido = not(sel < 0 or sel > len(self.titles)-1)
-            if valido:
-                break
-            else:
-                print(f"'{sel}' não é um valor válido, tente novamente")
-                
-        return sel
-    
+    def validate_input_selection(self, _sel):
+        print(_sel)
+        return not(_sel < 0 or _sel > len(self.titles)-1)
+
     def run(self):
         self.show()
-        sel = self.get_selection('digite uma opção: ')
+        sel = get_input('digite uma opção: ', tratar_input_int, self.validate_input_selection)
         print('\n')
         self.functions[sel]()
         print('\n')

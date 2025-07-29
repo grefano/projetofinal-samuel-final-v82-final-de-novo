@@ -1,12 +1,91 @@
 from Menu import *
 from Menu_end import menu_end
+from Obra import Obra
+from input import *
+from random import randint
+
+def ler_obras():
+    with open('obras.json', 'r') as file:
+        data = json.load(file)
+    return data
+
+def obra_file_ler(_id):
+    data = ler_obras()
+
+    for obra in data:
+        if obra['id'] == _id:
+            return obra
+        
+    print('obra não encontrada')
+    return data
+
+
+
+def obra_file_escrever(_obra_nova: Obra):
+    data = ler_obras()
+    for obra in data:
+        print(obra)
+        try:
+            if obra['id'] == _obra_nova['id']:
+                raise Exception('Obra já existe')
+        except:
+            continue
+    
+    data.append(_obra_nova.to_dict())
+    with open('obras.json', 'w') as file:
+        json.dump(data, file, indent=2)
+
+    return True
+        
+def input_obra():
+    # autor = tratar_input_base('Autor:')
+    # nome = tratar_input_base('Nome:')
+    # material = tratar_input_base('Material:')
+    # superficie = tratar_input_base('Superficie:')
+    # largura = tratar_input_int('Largura')
+    # comprimento = tratar_input_int('Comprimento')
+    # preco = tratar_input_int('Preco')
+
+    return Obra(
+        -1,
+        get_input('Autor:', tratar_input_base),
+        get_input('Nome:', tratar_input_base),
+        get_input('Material:', tratar_input_base),
+        get_input('Superficie:', tratar_input_base),
+        get_input('Largura:', tratar_input_int, validate_input_dimensao),
+        get_input('Comprimento:', tratar_input_int, validate_input_dimensao),
+        get_input('Preco:', tratar_input_int)
+    )
 
 def adicionar():
     print('adicionar')
+    data = ler_obras()
+    print(data)
+    id_valido = False
+    while not id_valido:
+        id = randint(0, 1000)
+        achou = False
+        for obra in data:
+            if obra['id'] == id:
+                achou = True
+        if not achou:
+            id_valido = True
+
+    
+    obra_cliente = input_obra()
+    obra_cliente.id = id
+
+    obra_file_escrever(obra_cliente)
+
 def buscar():
     print('buscar')
+
 def listar():
-    print('listar')
+    with open('obras.json', 'r') as file:
+        data = json.load(file)
+    for obra in data:
+        print(obra)
+
 def remover():
     print('remover')
 
@@ -14,7 +93,7 @@ def handle_end():
     menu_end.run()
 
 menu_main = Menu('Menu Principal', handle_end)
-menu_main.add_option('adicionar', adicionar)
-menu_main.add_option('buscar', buscar)
-menu_main.add_option('listar', listar)
-menu_main.add_option('remover', remover)
+menu_main.add_option('Adicionar', adicionar)
+menu_main.add_option('Buscar', buscar)
+menu_main.add_option('Listar', listar)
+menu_main.add_option('Remover', remover)

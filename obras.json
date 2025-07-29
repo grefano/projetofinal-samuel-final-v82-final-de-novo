@@ -1,0 +1,42 @@
+[
+  {
+    "id": 237,
+    "autor": null,
+    "nome": null,
+    "material": null,
+    "superficie": null,
+    "largura": -1,
+    "comprimento": -1,
+    "preco": -1
+  },
+  {
+    "id": 112,
+    "autor": null,
+    "nome": null,
+    "material": null,
+    "superficie": null,
+    "largura": -1,
+    "comprimento": -1,
+    "preco": -1
+  },
+  {
+    "id": 349,
+    "autor": null,
+    "nome": null,
+    "material": null,
+    "superficie": null,
+    "largura": 100,
+    "comprimento": 100,
+    "preco": 100
+  },
+  {
+    "id": 370,
+    "autor": "123awd",
+    "nome": "gabrielirado",
+    "material": "iawjd",
+    "superficie": "awdaw",
+    "largura": 200,
+    "comprimento": 10,
+    "preco": 2302983
+  }
+]
