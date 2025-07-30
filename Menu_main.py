@@ -24,7 +24,6 @@ def obra_file_ler(_id):
 def obra_file_escrever(_obra_nova: Obra):
     data = ler_obras()
     for obra in data:
-        print(obra)
         try:
             if obra['id'] == _obra_nova['id']:
                 raise Exception('Obra já existe')
@@ -42,7 +41,6 @@ def remover():
 
     data = ler_obras()
     for i in range(len(data)):
-        print(f"{id} == {data[i]['id']}")
         if data[i]['id'] == id:
             data.pop(i)
             with open('obras.json', 'w') as file:

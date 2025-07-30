@@ -28,7 +28,6 @@ class Input():
             if _input == '-1':
                 return -1
             _input = self.tratar(_input)
-            print(_input == 0)
             
 
             if self.validar:
@@ -48,7 +47,6 @@ def get_input(_prompt: str, _tratar = tratar_input_base, _validar = None):
     while True:
         _input = input(_prompt)
         _input = _tratar(_input)
-        print(_input == 0)
         
 
         if _validar:
