@@ -21,14 +21,13 @@ class Menu():
         print('\n')
 
     def validate_input_selection(self, _sel):
-        print(_sel)
-        return not(_sel < 0 or _sel > len(self.titles)-1)
+        return not(_sel <= 0 or _sel > len(self.titles))
 
     def run(self):
         self.show()
         sel = get_input('digite uma opção: ', tratar_input_int, self.validate_input_selection)
         print('\n')
-        self.functions[sel]()
+        self.functions[sel-1]()
         print('\n')
         if self.handle_end:
             self.handle_end()
