@@ -17,8 +17,7 @@ def obra_file_ler(_id):
         if obra['id'] == _id:
             return obra
         
-    print('obra não encontrada')
-    return data
+    raise FileNotFoundError
 
 
 
@@ -37,11 +36,25 @@ def obra_file_escrever(_obra_nova: Obra):
         json.dump(data, file, indent=2)
 
     return True
+
+def remover():
+    id = get_input('id: ', tratar_input_int, validate_input_obra_id)
+
+    data = ler_obras()
+    for i in range(len(data)):
+        print(f"{id} == {data[i]['id']}")
+        if data[i]['id'] == id:
+            data.pop(i)
+            with open('obras.json', 'w') as file:
+                json.dump(data, file, indent=2)
+            return True
+    
+    
+
+    print('Obra não encontrada')
         
 def adicionar():
-    print('adicionar')
     data = ler_obras()
-    print(data)
     id_valido = False
     while not id_valido:
         id = randint(0, 1000)
@@ -58,17 +71,20 @@ def adicionar():
 
     obra_file_escrever(obra_cliente)
 
-def buscar():
-    print('buscar')
 
+def buscar():
+    id = get_input('id: ', tratar_input_int, validate_input_obra_id)
+    try:
+        obra = obra_file_ler(id)
+        for key, val in obra.items():
+            print(f'{key}: {val}')
+    except:
+        print('Obra não encontrada')
 def listar():
     with open('obras.json', 'r') as file:
         data = json.load(file)
     for obra in data:
         print(obra)
-
-def remover():
-    print('remover')
 
 def handle_end():
     menu_end.run()

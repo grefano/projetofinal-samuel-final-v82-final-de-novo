@@ -17,7 +17,8 @@ class Menu():
         if self.title:
             print('\n' + '-'*10 + self.title + '-'*10)
         for o in range(len(self.titles)):
-            print(f'   {str(o)} - {self.titles[o]}')
+            print(f'   {str(o+1)} - {self.titles[o]}')
+        print('\n')
 
     def validate_input_selection(self, _sel):
         print(_sel)
